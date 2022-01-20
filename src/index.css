@@ -11,3 +11,89 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+/*User Arrangement */
+.user-arrangement{
+  display:flex;
+  justify-content: space-around;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+/*Add Form */
+.add-form-arrangement{
+  display:flex;
+  flex-direction: column;
+  gap:7px;
+  width:485px;
+}
+
+/*App Bar Style */
+.app-bar{
+  display:flex;
+  justify-content: space-evenly;
+  gap:3px;
+  width:100%;
+}
+
+
+/*Heading Style*/
+.heading-style{
+  color:#1976d2;
+}
+
+/*Main Image Style */
+.main-image-style{
+  height:140px;
+}
+
+/*Profile Styles */
+.profile-card-style{
+  font-weight:bold;
+}
+
+.profile-card{
+  display:flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 425px) {
+  .profile-card {
+    padding-left: 10px;
+    padding-right:10px;
+  }
+}
+
+.profile-padding{
+  padding-bottom: 10px;
+}
+
+/*Form style */
+.form-style{
+  display: flex;
+    gap: 4px;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.adjust-form{
+  display:flex;
+  justify-content: center;
+}
+
+.label-style{
+  color:#1976d2;
+  text-align:left;
+  width:146px
+}
+@media screen and (max-width:425px) {
+  .label-style{
+    width:90vw;
+    text-align:center;
+  }
+}
+
+.message-style{
+  color:green;
+  text-align:center
+}
