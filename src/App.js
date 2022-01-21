@@ -14,7 +14,8 @@ import {UserInfo} from './Users/UserInfo';
 import {useState} from 'react';
 import {WrongURL} from './Users/WrongURL';
 import Paper from '@mui/material/Paper';
-import { createTheme,ThemeProvider } from '@mui/material/styles'
+import { createTheme,ThemeProvider } from '@mui/material/styles';
+import Badge from '@mui/material/Badge';
 
 const colorTheme = createTheme({
   palette: {
@@ -28,14 +29,19 @@ const colorTheme = createTheme({
       md:768
   }
 }
-})
+});
+
+const users= React.createContext({});
 
 function App() {
   const history=useHistory();
   const [userList,setUserList]=useState(UserInfo);
+  const[userCount,setUserCount]=useState(userList.length);
+  const obj={userCount,setUserCount};
   const paperStyle={borderRadius:'0px',height:{sm:'146vh',md:'130vh'},backgroundColor:'beige'};
   return (
     <ThemeProvider theme={colorTheme}>
+    <users.Provider value={obj}>
     <Paper elevation={4} sx={paperStyle}>
     <div className="App">
        <Box sx={{ flexGrow: 1 }}>
@@ -45,6 +51,9 @@ function App() {
         <Button variant="text" color="warning" onClick={()=>{history.push('/')}}>HOME</Button>
         <Button variant="text" color="warning" onClick={()=>{history.push('/users')}}>USERS</Button>
         <Button variant="text" color="warning" onClick={()=>{history.push('/create-user')}}>ADD USER</Button>
+        <Button variant="text" color="warning">
+         User Count &nbsp;&nbsp; <Badge badgeContent={userCount} color="warning"/>
+      </Button>
         </div>
         </Toolbar>
       </AppBar>
@@ -65,8 +74,9 @@ function App() {
     </Switch>
     </div>
     </Paper>
+    </users.Provider>
     </ThemeProvider>
   );
 }
 
-export default App;
+export {App,users};

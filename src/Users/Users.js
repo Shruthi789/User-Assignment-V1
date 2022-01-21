@@ -7,6 +7,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useHistory } from 'react-router-dom';
+import {users} from '../App.js';
 
 function User({id,name,mainImage,deleteButton,editButton,profileButton}){
     return ( <Card sx={{ minWidth:300,backgroundColor:'aliceblue',color:'#1976d2' }}>
@@ -34,9 +35,11 @@ function User({id,name,mainImage,deleteButton,editButton,profileButton}){
 
 function Users({userList,setUserList}){
     const history=useHistory();
+    const {userCount,setUserCount}=React.useContext(users);
     const deleteAction=(id)=>{
         const newUserList=userList.filter((user)=>id!==user.id);
         setUserList(newUserList);
+        setUserCount(userCount-1);
     };
     return (
         <div>

@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState,useContext } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
+import {users} from '../App.js';
 
 function AddUser({userList,setUserList}){
     const [name,setName]=useState("");
@@ -11,6 +12,7 @@ function AddUser({userList,setUserList}){
     const [hobbies,setHobbies]=useState(""); 
     const [userImage,setUserImage]=useState(""); 
     const [mainImage,setmainImage]=useState("");
+    const {userCount,setUserCount}=useContext(users);
     const history=useHistory();
     const submitHandler=(event)=>{
     event.preventDefault(); 
@@ -27,6 +29,7 @@ function AddUser({userList,setUserList}){
         mainImage:mainImage
     };
     setUserList([...userList,newUser]);
+    setUserCount(userCount+1);
     history.push('/users');
     }
     return (<div>

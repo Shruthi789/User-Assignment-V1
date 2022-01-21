@@ -31,8 +31,9 @@ code {
 /*App Bar Style */
 .app-bar{
   display:flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   gap:3px;
+  flex-wrap: wrap;
   width:100%;
 }
 
