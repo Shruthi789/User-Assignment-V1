@@ -38,7 +38,7 @@ function App() {
   const [userList,setUserList]=useState(UserInfo);
   const[userCount,setUserCount]=useState(userList.length);
   const obj={userCount,setUserCount};
-  const paperStyle={borderRadius:'0px',height:{sm:'146vh',md:'130vh'},backgroundColor:'beige'};
+  const paperStyle={borderRadius:'0px',minHeight:'100vh',backgroundColor:'beige'};
   return (
     <ThemeProvider theme={colorTheme}>
     <users.Provider value={obj}>
