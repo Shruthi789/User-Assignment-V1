@@ -10,7 +10,6 @@ import { Users } from './Users/Users';
 import { EditUser } from './Users/EditUser';
 import { Profile } from './Users/Profile';
 import { AddUser } from './Users/AddUser';
-import {UserInfo} from './Users/UserInfo';
 import {useState} from 'react';
 import {WrongURL} from './Users/WrongURL';
 import Paper from '@mui/material/Paper';
@@ -35,9 +34,16 @@ const users= React.createContext({});
 
 function App() {
   const history=useHistory();
-  const [userList,setUserList]=useState(UserInfo);
-  const[userCount,setUserCount]=useState(userList.length);
-  const obj={userCount,setUserCount};
+  const [userList,setUserList]=useState([]);
+  const[userCount,setUserCount]=useState(0);
+  const getUsers=()=>{
+    fetch('https://61988dae164fa60017c230ed.mockapi.io/users')
+    .then((response)=>response.json())
+    .then((users)=>{setUserList(users);setUserCount(users.length);})
+    .catch((error)=>console.log(error));
+  }
+  React.useEffect(getUsers,[])
+  const obj={userList,userCount,getUsers};
   const paperStyle={borderRadius:'0px',minHeight:'100vh',backgroundColor:'beige'};
   return (
     <ThemeProvider theme={colorTheme}>
@@ -60,16 +66,16 @@ function App() {
     </Box>
     <Switch>
       <Route exact path="/"><Home/></Route>
-      <Route path="/users"><Users userList={userList} setUserList={setUserList}/></Route>
+      <Route path="/users"><Users/></Route>
       <Route path="/employees">
         <Redirect to="/users"/>
       </Route>
-      <Route path="/create-user"><AddUser userList={userList} setUserList={setUserList} /></Route>
+      <Route path="/create-user"><AddUser/></Route>
       <Route path="/create-employee">
            <Redirect to="/create-user"/>
       </Route>
-      <Route path="/edit-user/:id"><EditUser userList={userList} setUserList={setUserList}/></Route>
-      <Route path="/profile/:id"><Profile userList={userList}/></Route>
+      <Route path="/edit-user/:id"><EditUser/></Route>
+      <Route path="/profile/:id"><Profile/></Route>
       <Route path="**"> <WrongURL/></Route>
     </Switch>
     </div>

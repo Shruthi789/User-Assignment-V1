@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useHistory } from 'react-router-dom';
 import {users} from '../App.js';
+import {Loading} from './Loading.js';
 
 function User({id,name,mainImage,deleteButton,editButton,profileButton}){
     return ( <Card sx={{ minWidth:300,backgroundColor:'aliceblue',color:'#1976d2' }}>
@@ -33,15 +34,17 @@ function User({id,name,mainImage,deleteButton,editButton,profileButton}){
       </Card>);
 }
 
-function Users({userList,setUserList}){
+function Users(){
     const history=useHistory();
-    const {userCount,setUserCount}=React.useContext(users);
+    const {userList,getUsers}=React.useContext(users);
     const deleteAction=(id)=>{
-        const newUserList=userList.filter((user)=>id!==user.id);
-        setUserList(newUserList);
-        setUserCount(userCount-1);
+        fetch(`https://61988dae164fa60017c230ed.mockapi.io/users/${id}`,{method:'DELETE'})
+        .then(()=>getUsers())
+        .catch((error)=>console.log(error));
     };
     return (
+      <div>
+      {userList.length!==0?
         <div>
          <h2 className="heading-style">USERS</h2>
         <div className="user-arrangement">
@@ -49,7 +52,8 @@ function Users({userList,setUserList}){
             VIEW PROFILE
           </Button>}/>)}
         </div>
-        </div>
+        </div>:<Loading/>}
+      </div>
         );
 }
 

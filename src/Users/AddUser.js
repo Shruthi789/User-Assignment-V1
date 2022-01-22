@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import { useHistory } from "react-router-dom";
 import {users} from '../App.js';
 
-function AddUser({userList,setUserList}){
+function AddUser(){
     const [name,setName]=useState("");
     const [DOB,setDOB]=useState("");
     const [designation,setDesignation]=useState("");
@@ -12,12 +12,11 @@ function AddUser({userList,setUserList}){
     const [hobbies,setHobbies]=useState(""); 
     const [userImage,setUserImage]=useState(""); 
     const [mainImage,setmainImage]=useState("");
-    const {userCount,setUserCount}=useContext(users);
+    const {getUsers}=useContext(users);
     const history=useHistory();
     const submitHandler=(event)=>{
     event.preventDefault(); 
     const newUser={
-        id:`${(+userList[userList.length-1].id)+1}`,
         name: name,
         userProfile:{
                      DOB:DOB,
@@ -28,9 +27,16 @@ function AddUser({userList,setUserList}){
                     },
         mainImage:mainImage
     };
-    setUserList([...userList,newUser]);
-    setUserCount(userCount+1);
-    history.push('/users');
+    fetch(`https://61988dae164fa60017c230ed.mockapi.io/users`,{
+      method:'POST',
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify(newUser)
+    })
+    .then(()=>{
+        getUsers();
+        history.push('/users');
+    })
+    .catch((error)=>console.log(error));
     }
     return (<div>
             <h2 className="heading-style">ADD USER</h2>
@@ -42,7 +48,7 @@ function AddUser({userList,setUserList}){
           required
           id="outlined-required"
           label="Name"
-          defaultValue={name}
+          value={name}
           onChange={(event)=>{setName(event.target.value)}}
           sx={{width:{xs:'90vw',md:331}}}
         />
@@ -53,7 +59,7 @@ function AddUser({userList,setUserList}){
           required
           id="outlined-required"
           label="Date of Birth"
-          defaultValue={DOB}
+          value={DOB}
           onChange={(event)=>{setDOB(event.target.value)}}
           sx={{width:{xs:'90vw',md:331}}}
         />
@@ -64,7 +70,7 @@ function AddUser({userList,setUserList}){
           required
           id="outlined-required"
           label="Designation"
-          defaultValue={designation}
+          value={designation}
           onChange={(event)=>{setDesignation(event.target.value)}}
           sx={{width:{xs:'90vw',md:331}}}
         />
@@ -75,7 +81,7 @@ function AddUser({userList,setUserList}){
           required
           id="outlined-required"
           label="Salary"
-          defaultValue={salary}
+          value={salary}
           onChange={(event)=>{setSalary(event.target.value)}}
           sx={{width:{xs:'90vw',md:331}}}
         />
@@ -86,7 +92,7 @@ function AddUser({userList,setUserList}){
           required
           id="outlined-required"
           label="Hobbies"
-          defaultValue={hobbies}
+          value={hobbies}
           onChange={(event)=>{setHobbies(event.target.value)}}
           sx={{width:{xs:'90vw',md:331}}}
         />
@@ -97,7 +103,7 @@ function AddUser({userList,setUserList}){
           required
           id="outlined-required"
           label="User Image"
-          defaultValue={userImage}
+          value={userImage}
           onChange={(event)=>{setUserImage(event.target.value)}}
           sx={{width:{xs:'90vw',md:331}}}
         />
@@ -108,7 +114,7 @@ function AddUser({userList,setUserList}){
           required
           id="outlined-required"
           label="Main Image"
-          defaultValue={mainImage}
+          value={mainImage}
           onChange={(event)=>{setmainImage(event.target.value)}}
           sx={{width:{xs:'90vw',md:331}}}
         />
