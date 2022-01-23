@@ -7,16 +7,20 @@ import {Loading} from './Loading.js';
 
 function EditUser(){
     const {id}=useParams();
+    localStorage.setItem('userID',id);
     const [user, setUser] = useState(null);
-  const getUser = () => {
-    fetch(`https://61988dae164fa60017c230ed.mockapi.io/users/${id}`)
-      .then((response) => response.json())
-      .then((res) => {
-        setUser(res);
-      })
-      .catch((error) => console.log(error));
-  };
-  useEffect(getUser,[]);
+  useEffect(()=>{
+    const ID=localStorage.getItem('userID');
+    const getUser = () => {
+      fetch(`https://61988dae164fa60017c230ed.mockapi.io/users/${ID}`)
+        .then((response) => response.json())
+        .then((res) => {
+          setUser(res);
+        })
+        .catch((error) => console.log(error));
+    };
+    getUser();
+  },[]);
   
     return (
       <div>
