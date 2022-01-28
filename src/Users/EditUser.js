@@ -1,8 +1,9 @@
-import { useState,useEffect } from "react";
+import { useState,useEffect,useContext } from "react";
 import { useParams } from "react-router-dom";
 import {BackButton} from './BackButton.js';
 import {Loading} from './Loading.js';
 import {FormComponent} from './Form.js';
+import {users} from '../App.js';
 
 function EditUser(){
     const {id}=useParams();
@@ -31,6 +32,7 @@ function EditUser(){
 function EditForm({user}){
   const { id, name, userProfile, mainImage } = user;
   const { DOB, designation, salary, hobbies, userImage } = userProfile;
+  const {getUsers}=useContext(users);
     const [message,setMessage]=useState("");
     const initialValues= {
       name:name,
@@ -66,7 +68,8 @@ function EditForm({user}){
          values.designation=""
          values.userImage=""
          values.mainImage=""
-        setMessage("User Edited!!!")
+        setMessage("User Edited!!!");
+        getUsers();
       })
        .catch((error)=>console.log(error))
       
@@ -75,7 +78,7 @@ function EditForm({user}){
 <FormComponent initialValues={initialValues} action="EDIT" submitHandler={submitHandler}/>
 <p className="message-style">{message}</p>
 <div>
-<BackButton/>
+ <BackButton/>
 </div>  
 </div>);
 }
