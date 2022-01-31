@@ -20,7 +20,7 @@ function FormComponent({initialValues,submitHandler,action}){
         onSubmit:submitHandler
       })
     return (<div>
-        <h2 className="heading-style">{action} USER</h2>
+        <h2 className="heading-style-form">{action} USER</h2>
         <div className='adjust-form'>
         <form onSubmit={handleSubmit} className="add-form-arrangement">
         <div className="form-style">
@@ -121,7 +121,7 @@ function FormComponent({initialValues,submitHandler,action}){
       sx={{width:{xs:'90vw',md:331}}}
     />
     </div>
-       <Button variant="contained" type="Submit" sx={{color:'beige'}}>+{action} User</Button>
+       <Button variant="contained" type="Submit" sx={{color:'beige',width:{xs:'90vw',md:'100%'}}}>+{action} User</Button>
 
 </form>
 </div> 

@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 function BackButton(){
     const history=useHistory();
     return (
-        <Button variant="contained" color="primary" sx={{color:'beige'}} startIcon={<ArrowBackIosIcon htmlColor='beige' />} onClick={()=>history.goBack()}>
+        <Button variant="contained" color="primary" sx={{color:'beige',float:{xs:'left',md:'none'}}} startIcon={<ArrowBackIosIcon htmlColor='beige' />} onClick={()=>history.goBack()}>
            Back
       </Button>
     );

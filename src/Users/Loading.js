@@ -1,7 +1,7 @@
 
 
 function Loading(){
-    return(<h2 className="heading-style">Loading...</h2>);
+    return(<div style={{minHeight:'100vh',width:'100vw'}}><h2 className="heading-style">Loading...</h2></div>);
 }
 
 export {Loading}

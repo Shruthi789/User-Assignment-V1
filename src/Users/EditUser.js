@@ -74,7 +74,7 @@ function EditForm({user}){
        .catch((error)=>console.log(error))
       
       }
-  return (<div>
+  return (<div className="profile-height">
 <FormComponent initialValues={initialValues} action="EDIT" submitHandler={submitHandler}/>
 <p className="message-style">{message}</p>
 <div>

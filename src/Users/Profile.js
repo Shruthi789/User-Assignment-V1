@@ -10,7 +10,7 @@ function ProfileCard({user}) {
   const { name, userProfile } = user;
   const { DOB, designation, salary, hobbies, userImage } = userProfile;
   return (
-    <div>
+    <div className="profile-height">
       <h2 className="heading-style">USER PROFILE OF {name.toUpperCase()}</h2>
       <br />
       <div className="profile-card">
@@ -89,7 +89,7 @@ function Profile() {
 },[]);
 
   return (
-    <div>
+    <div className='profile-width'>
     {user?<ProfileCard user={user}/>:<Loading/>}
     </div>
   );

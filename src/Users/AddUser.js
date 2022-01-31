@@ -40,7 +40,7 @@ function AddUser(){
     }
    
     
-    return (<FormComponent initialValues={initialValues} action="ADD" submitHandler={submitHandler}/> );
+    return (<div className="profile-height"><FormComponent initialValues={initialValues} action="ADD" submitHandler={submitHandler}/></div>);
 }
 
 export {AddUser};

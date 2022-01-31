@@ -39,7 +39,7 @@ code {
 
 
 /*Heading Style*/
-.heading-style{
+.heading-style,.heading-style-form,.heading-style-home{
   color:#1976d2;
 }
 
@@ -57,14 +57,9 @@ code {
   display:flex;
   justify-content: center;
 }
-
-@media screen and (max-width: 425px) {
-  .profile-card {
-    padding-left: 10px;
-    padding-right:10px;
-  }
+.profile-height{
+  min-height:100vh;
 }
-
 .profile-padding{
   padding-bottom: 10px;
 }
@@ -87,14 +82,54 @@ code {
   text-align:left;
   width:146px
 }
-@media screen and (max-width:425px) {
-  .label-style{
-    width:90vw;
-    text-align:center;
-  }
-}
-
 .message-style{
   color:green;
   text-align:center
+}
+/*NavBar and Drawer styles */
+.avatar-name{
+  color: beige;
+  width: 100%;
+}
+
+.org{
+   border-left: 1px solid beige;
+   align-items: center;
+   display:flex;
+   margin:8px;
+   padding:10px;
+   height: 50px;
+}
+
+.color-drawer{
+  color:beige;
+}
+
+@media screen and (max-width: 425px) {
+  .profile-card {
+    padding-left: 10px;
+    padding-right:10px;
+  }
+  .profile-width{
+    width:90vh;
+  }
+  .adjust-form{
+    justify-content:flex-end;
+  }
+  .form-style{
+    justify-content: initial;
+  }
+  .label-style{
+    width:90vw;
+  }
+  .heading-style-form{
+    text-align: left;
+  }
+  .message-style{
+    text-align:left;
+  }
+  .heading-style-home{
+    margin:10px;
+    padding:20px;
+  }
 }
