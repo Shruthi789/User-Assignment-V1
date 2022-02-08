@@ -7,10 +7,11 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import { useHistory } from 'react-router-dom';
-import {users} from '../App.js';
+import {employees} from '../App.js';
 import {Loading} from './Loading.js';
+import { API,token } from '../APIInfo.js';
 
-function User({id,name,mainImage,deleteButton,editButton,profileButton}){
+function Employee({id,name,mainImage,deleteButton,editButton,profileButton}){
     return ( <Card sx={{ minWidth:300,backgroundColor:'aliceblue',color:'#1976d2' }}>
         <CardActionArea>
           <CardMedia
@@ -21,7 +22,7 @@ function User({id,name,mainImage,deleteButton,editButton,profileButton}){
           />
           <CardContent>
             <h1>{name}</h1>
-            <h5>User ID: {id}</h5>
+            <h5>Employee ID: {id}</h5>
           </CardContent>
         </CardActionArea>
         <CardActions sx={{justifyContent:'space-between'}}>
@@ -34,21 +35,25 @@ function User({id,name,mainImage,deleteButton,editButton,profileButton}){
       </Card>);
 }
 
-function Users(){
+function Employees(){
     const history=useHistory();
-    const {userList,getUsers}=React.useContext(users);
+    const {employeeList,getEmployees}=React.useContext(employees);
     const deleteAction=(id)=>{
-        fetch(`https://61988dae164fa60017c230ed.mockapi.io/users/${id}`,{method:'DELETE'})
-        .then(()=>getUsers())
+        fetch(`${API}/employees/${id}`,{
+          method:'DELETE',
+          headers:{
+            'x-auth-token':token
+          }})
+        .then(()=>getEmployees())
         .catch((error)=>console.log(error));
     };
     return (
       <div>
-      {userList.length!==0?
+      {employeeList.length!==0?
         <div>
-         <h2 className="heading-style">USERS</h2>
-        <div className="user-arrangement">
-        {userList.map(({id,name,mainImage},index)=><User id={id} name={name} mainImage={mainImage} key={index} deleteButton={<IconButton aria-label="delete" color="error" onClick={()=>{deleteAction(id)}}><DeleteIcon/></IconButton>} editButton={<IconButton aria-label="edit" color="primary" onClick={()=>{history.push(`/edit-user/${id}`)}}><EditIcon/></IconButton>} profileButton={ <Button variant="outlined" color="primary" onClick={()=>{history.push(`/profile/${id}`)}}>
+         <h2 className="heading-style">EMPLOYEES</h2>
+        <div className="employee-arrangement">
+        {employeeList.map(({_id,empId,name,mainImage})=><Employee id={empId} name={name} mainImage={mainImage} key={_id} deleteButton={<IconButton aria-label="delete" color="error" onClick={()=>{deleteAction(_id)}}><DeleteIcon/></IconButton>} editButton={<IconButton aria-label="edit" color="primary" onClick={()=>{history.push(`/edit-employee/${_id}`)}}><EditIcon/></IconButton>} profileButton={ <Button variant="outlined" color="primary" onClick={()=>{history.push(`/profile/${_id}`)}}>
             VIEW PROFILE
           </Button>}/>)}
         </div>
@@ -57,4 +62,4 @@ function Users(){
         );
 }
 
-export {Users};
+export {Employees};

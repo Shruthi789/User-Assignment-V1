@@ -3,6 +3,7 @@ import * as React from 'react';
 import { createTheme,ThemeProvider } from '@mui/material/styles';
 import { MiniDrawer } from './DashboardTemplate';
 import {useState} from 'react';
+import {API,token} from './APIInfo';
 
 const colorTheme = createTheme({
   palette: {
@@ -18,28 +19,33 @@ const colorTheme = createTheme({
 }
 });
 
-const users= React.createContext({});
+const employees= React.createContext({});
 
 function App() {
-  const [userList,setUserList]=useState([]);
-  const[userCount,setUserCount]=useState(0);
-  const getUsers=()=>{
-    fetch('https://61988dae164fa60017c230ed.mockapi.io/users')
+  const [employeeList,setEmployeeList]=useState([]);
+  const[employeeCount,setEmployeeCount]=useState(0);
+  const getEmployees=()=>{
+    fetch(`${API}/employees`,{
+      method:'GET',
+      headers:{
+        'x-auth-token': token
+      }
+    })
     .then((response)=>response.json())
-    .then((users)=>{setUserList(users);setUserCount(users.length);})
+    .then((employees)=>{setEmployeeList(employees);setEmployeeCount(employees.length);})
     .catch((error)=>console.log(error));
   }
-  React.useEffect(getUsers,[])
-  const obj={userList,userCount,getUsers};
+  React.useEffect(getEmployees,[])
+  const obj={employeeList,employeeCount,getEmployees};
   return (
     <ThemeProvider theme={colorTheme}>
-    <users.Provider value={obj}>
+    <employees.Provider value={obj}>
      <div className="App">
      <MiniDrawer/>
     </div>
-    </users.Provider>
+    </employees.Provider>
     </ThemeProvider>
   );
 }
 
-export {App,users};
+export {App,employees};

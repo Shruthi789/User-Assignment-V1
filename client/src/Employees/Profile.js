@@ -5,13 +5,14 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { useEffect, useState } from "react";
 import {Loading} from './Loading.js';
+import { API } from "../APIInfo.js";
 
-function ProfileCard({user}) {
-  const { name, userProfile } = user;
-  const { DOB, designation, salary, hobbies, userImage } = userProfile;
+function ProfileCard({employee}) {
+  const { name, empProfile } = employee;
+  const { DOB, designation, salary, hobbies, empImage,availLeave,leaveTaken } = empProfile;
   return (
     <div className="profile-height">
-      <h2 className="heading-style">USER PROFILE OF {name.toUpperCase()}</h2>
+      <h2 className="heading-style">EMPLOYEE PROFILE OF {name.toUpperCase()}</h2>
       <br />
       <div className="profile-card">
         <Card
@@ -30,8 +31,8 @@ function ProfileCard({user}) {
               width: 170,
               marginInline: "auto",
             }}
-            image={userImage}
-            alt="User pic"
+            image={empImage}
+            alt="employee pic"
           />
           <CardContent
             sx={{
@@ -60,6 +61,14 @@ function ProfileCard({user}) {
               <span className="profile-card-style">Hobbies</span>:{" "}
               {hobbies}
             </p>
+            <p>
+            <span className="profile-card-style">Available Leave</span>:{" "}
+              {availLeave}
+            </p>
+            <p>
+            <span className="profile-card-style">Leave Taken</span>:{" "}
+              {leaveTaken}
+            </p>
           </CardContent>
         </Card>
       </div>
@@ -73,24 +82,29 @@ function ProfileCard({user}) {
 
 function Profile() {
   const { id } = useParams();
-  localStorage.setItem('userID',id);
-  const [user, setUser] = useState(null);
+  localStorage.setItem('employeeID',id);
+  const [employee, setEmployee] = useState(null);
   useEffect(()=>{
-    const ID=localStorage.getItem('userID');
-    const getUser = () => {
-      fetch(`https://61988dae164fa60017c230ed.mockapi.io/users/${ID}`)
+    const ID=localStorage.getItem('employeeID');
+    const getEmployee = () => {
+      fetch(`${API}/employees/${ID}`,{
+        method:'GET',
+        headers:{
+          'x-auth-token': token
+        }
+      })
         .then((response) => response.json())
         .then((res) => {
-          setUser(res);
+          setEmployee(res);
         })
         .catch((error) => console.log(error));
     }
-    getUser();
+    getEmployee();
 },[]);
 
   return (
     <div className='profile-width'>
-    {user?<ProfileCard user={user}/>:<Loading/>}
+    {employee?<ProfileCard employee={employee}/>:<Loading/>}
     </div>
   );
 }

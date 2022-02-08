@@ -12,8 +12,8 @@ code {
     monospace;
 }
 
-/*User Arrangement */
-.user-arrangement{
+/*employee Arrangement */
+.employee-arrangement{
   display:flex;
   justify-content: space-around;
   gap:7px;

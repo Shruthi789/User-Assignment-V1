@@ -18,12 +18,12 @@ import EmojiEmotionsIcon from '@mui/icons-material/EmojiEmotions';
 import GroupIcon from '@mui/icons-material/Group';
 import PrimarySearchAppBar from './NavBar';
 import {Switch,Route,Redirect} from 'react-router-dom';
-import { Home } from './Users/Home';
-import { Users } from './Users/Users';
-import { EditUser } from './Users/EditUser';
-import { Profile } from './Users/Profile';
-import { AddUser } from './Users/AddUser';
-import {WrongURL} from './Users/WrongURL';
+import { Home } from './Employees/Home';
+import { Employees } from './Employees/Employees';
+import { EditEmployee } from './Employees/EditEmployee';
+import { Profile } from './Employees/Profile';
+import { AddEmployee } from './Employees/AddEmployee';
+import {WrongURL} from './Employees/WrongURL';
 import Paper from '@mui/material/Paper';
 const drawerWidth = 240;
 const openedMixin = (theme) => ({
@@ -139,7 +139,7 @@ function MiniDrawer() {
         <EmojiEmotionsIcon fontSize="large" htmlColor="beige"/>
               </ListItemIcon>
               <ListItemText>
-            <h4 className='color-drawer'>SB ADMIN <sup>2</sup></h4>
+            <h4 className='color-drawer'>ADMIN USER</h4>
             </ListItemText>
             </ListItem>
           <IconButton onClick={handleDrawerClose}>
@@ -147,12 +147,12 @@ function MiniDrawer() {
           </IconButton>
         </DrawerHeader>
         <Divider color="inherit" />
-        <ListItem button key="Users">
+        <ListItem button key="employees">
           <ListItemIcon>
         <GroupIcon fontSize="medium" htmlColor="beige"/>
               </ListItemIcon>
               <ListItemText className='color-drawer'>
-              Users
+              Employees
             </ListItemText>
             </ListItem>
             <Divider color="inherit" />
@@ -163,21 +163,20 @@ function MiniDrawer() {
        <DrawerHeader />
         <Switch>
       <Route exact path="/"><Home/></Route>
-      <Route path="/users"><Users/></Route>
-      <Route path="/employees">
-        <Redirect to="/users"/>
+      <Route path="/employees"><Employees/></Route>
+      <Route path="/users">
+        <Redirect to="/employees"/>
       </Route>
-      <Route path="/create-user"><AddUser/></Route>
-      <Route path="/create-employee">
-           <Redirect to="/create-user"/>
+      <Route path="/create-employee"><AddEmployee/></Route>
+      <Route path="/create-user">
+           <Redirect to="/create-employee"/>
       </Route>
-      <Route path="/edit-user/:id"><EditUser/></Route>
+      <Route path="/edit-employee/:id"><EditEmployee/></Route>
       <Route path="/profile/:id"><Profile/></Route>
       <Route path="**"> <WrongURL/></Route>
     </Switch>
      </Box>
     </Box>
-    {/* <CopyrightDiv /> */}
     </div>
     </Paper>
   );
