@@ -143,7 +143,7 @@ function FormComponent({initialValues,submitHandler,action}){
         <TextField
         id="empImage"
       name="empImage"
-      label="empImage"
+      label="Employee Image"
       value={values.empImage}
       onChange={handleChange}
       onBlur={handleBlur}
