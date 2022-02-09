@@ -139,7 +139,7 @@ const {employeeCount}=React.useContext(employees);
         <div className="app-bar">
         <Button variant="text" color="warning" onClick={()=>{history.push('/')}}>HOME</Button>
         <Button variant="text" color="warning" onClick={()=>{history.push('/employees')}}>EMPLOYEES</Button>
-        <Button variant="text" color="warning" onClick={()=>{history.push('/create-employees')}}>ADD EMPLOYEES</Button>
+        <Button variant="text" color="warning" onClick={()=>{history.push('/create-employee')}}>ADD EMPLOYEES</Button>
         <Button variant="text" color="warning">
          Employee Count &nbsp;&nbsp; <Badge badgeContent={employeeCount} color="warning"/>
       </Button>
