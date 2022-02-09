@@ -6,7 +6,7 @@ import {FormComponent} from './Form.js';
 import {employees} from '../App.js';
 import { token } from "../APIInfo.js";
 
-function Editemployee(){
+function EditEmployee(){
   const { id } = useParams();
   localStorage.setItem('employeeID',id);
   const [employee, setEmployee] = useState(null);

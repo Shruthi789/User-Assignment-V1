@@ -18,7 +18,7 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import { Divider } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 import Button from '@mui/material/Button';
-import {users} from './App.js';
+import {employees} from './App.js';
 
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -132,16 +132,16 @@ export default function PrimarySearchAppBar() {
     </Menu>
   );
 const history=useHistory();
-const {userCount}=React.useContext(users);
+const {employeeCount}=React.useContext(employees);
   return (
     <Box sx={{ flexGrow: 1 }}>
         <Toolbar sx={{padding:'0px'}}>
         <div className="app-bar">
         <Button variant="text" color="warning" onClick={()=>{history.push('/')}}>HOME</Button>
-        <Button variant="text" color="warning" onClick={()=>{history.push('/users')}}>USERS</Button>
-        <Button variant="text" color="warning" onClick={()=>{history.push('/create-user')}}>ADD USER</Button>
+        <Button variant="text" color="warning" onClick={()=>{history.push('/employees')}}>EMPLOYEES</Button>
+        <Button variant="text" color="warning" onClick={()=>{history.push('/create-employees')}}>ADD EMPLOYEES</Button>
         <Button variant="text" color="warning">
-         User Count &nbsp;&nbsp; <Badge badgeContent={userCount} color="warning"/>
+         Employee Count &nbsp;&nbsp; <Badge badgeContent={employeeCount} color="warning"/>
       </Button>
         </div>
           <Box sx={{ flexGrow: 1 }} />

@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 function FormComponent({initialValues,submitHandler,action}){
     
     const formValidationSchema=yup.object({
-        empId:yup.string().required('Enter an employee ID!!');
+        empId:yup.string().required('Enter an employee ID!!'),
         name:yup.string().required('Enter a name!!'),
         DOB:yup.string().matches('[0-9]{2}[/][0-9]{2}[/][0-9]{4}','Enter a valid date').required('Enter a date!'),
         designation:yup.string().max(30,'Limit is 30 characters').required('Enter a designation!'),
