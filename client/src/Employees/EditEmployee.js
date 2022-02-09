@@ -4,7 +4,7 @@ import {BackButton} from './BackButton.js';
 import {Loading} from './Loading.js';
 import {FormComponent} from './Form.js';
 import {employees} from '../App.js';
-import { token } from "../APIInfo.js";
+import { API,token } from "../APIInfo.js";
 
 function EditEmployee(){
   const { id } = useParams();

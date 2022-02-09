@@ -5,7 +5,7 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { useEffect, useState } from "react";
 import {Loading} from './Loading.js';
-import { API } from "../APIInfo.js";
+import { API,token } from "../APIInfo.js";
 
 function ProfileCard({employee}) {
   const { name, empProfile } = employee;
