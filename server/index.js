@@ -18,7 +18,9 @@ async function createConnection(){
 }
 const client= await createConnection();
 
-
+app.get('/',(request,response)=>{
+    response.send('Welcome to the employees app');
+})
 app.use('/employees',employeesRouter);
 app.use('/users',usersRouter);
 
