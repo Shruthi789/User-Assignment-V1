@@ -12,8 +12,8 @@ function FormComponent({initialValues,submitHandler,action}){
         designation:yup.string().max(30,'Limit is 30 characters').required('Enter a designation!'),
         salary:yup.number().min(250000,'Enter a higher salary').max(2000000,'Enter a lower salary').required('Enter a salary!'),
         hobbies:yup.string().min(10,'Enter a minimum of 10 characters').required('Enter hobbies!'),
-        availLeave:yup.number.min(0,'Enter a higher value').max(10,'Enter a lower value').required('Enter the available leave!!'),
-        leaveTaken:yup.number.min(0,'Enter a higher value').max(10,'Enter a lower value').required('Enter the number of leaves taken!!'),
+        availLeave:yup.number().min(0,'Enter a higher value').max(10,'Enter a lower value').required('Enter the available leave!!'),
+        leaveTaken:yup.number().min(0,'Enter a higher value').max(10,'Enter a lower value').required('Enter the number of leaves taken!!'),
         empImage:yup.string().min(4,'Enter a minimum of 4 characters').required('Enter a user image!'),
         mainImage:yup.string().min(8,'Enter a minimum of 8 characters').required('Enter a main image!')
       });
